@@ -7,6 +7,6 @@ const connectDB = async () => {
     } catch (error) {
         console.log("Error en la conexion de la BBDD");
     }
-}
+} 
 
 module.exports = { connectDB }
