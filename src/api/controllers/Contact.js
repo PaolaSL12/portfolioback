@@ -90,12 +90,21 @@ const sendEmail = async (req, res) => {
             text: `Has recibido un nuevo mensaje de ${name} (${email}):\n\n${message}`,
         };
 
+        const userMailOptions = {
+            from: `"paolasanchez.dev" <${process.env.EMAIL_USER_FROM}>`,
+            to: email, 
+            subject: 'Confirmación de tu mensaje',
+            text: `Hola ${name},\n\nGracias por contactarnos. Hemos recibido tu mensaje y te responderemos a la brevedad.\n\nDetalles del mensaje:\n${message}\n\nSaludos,`,
+        };
 
-        const result = await transporter.sendMail(mailOptions);
+        const resultAdmin = await transporter.sendMail(mailOptions);
+        console.log('Correo al administrador enviado con éxito:', resultAdmin);
 
-         console.log('Correo enviado con éxito:', result);
 
-        res.status(200).json({ success: true, message: 'Correo enviado correctamente' });
+        const resultUser = await transporter.sendMail(userMailOptions);
+        console.log('Correo de confirmación enviado al usuario con éxito:', resultUser);
+
+        res.status(200).json({ success: true, message: 'Correos enviados correctamente' });
     } catch (error) {
         console.error('Error al enviar el correo:', error);
         res.status(500).json({ success: false, message: 'Error al enviar el correo' });

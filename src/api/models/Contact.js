@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const contactSchema = new mongoose.Schema(
     {
       email: { type: String, required: true },
+      header: { type: String, required: true },
       socials: [
         {
           name: { type: String, required: true },
           url: { type: String, required: true }
         }
       ],
+      form: [{ type: String, required: true }],
       language: { type: String, required: true, enum: ["es", "en"] }
     },
     {
