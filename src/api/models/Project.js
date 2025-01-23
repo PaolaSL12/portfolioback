@@ -9,7 +9,12 @@ const projectSchema = new mongoose.Schema(
         desc: [{ type: String, required: true }]
       }
     ],
-    technologies: { type: String, required: true },
+    technologies: [
+      {
+        name: { type: String, required: true },
+        desc: [{ type: String, required: true }]
+      }
+    ],
     url: { type: String, required: true },
     imageUrl: { type: String, required: true },
     language: { type: String, required: true, enum: ["es", "en"] },
