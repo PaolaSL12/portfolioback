@@ -11,6 +11,22 @@ const getProjects = async (req, res) => {
     }
 };
 
+const getProjectById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+
+        const project = await Project.findById(id);
+
+        if (!project) {
+            return res.status(404).json({ error: 'Proyecto no encontrado' });
+        }
+        res.json(project);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener el proyecto' });
+    }
+};
+
 const addProject = async (req, res) => {
     const lang = req.params.lang;
 
@@ -53,4 +69,4 @@ const removeProject = async (req, res) => {
     }
 };
 
-module.exports = { getProjects, addProject, removeProject };
+module.exports = { getProjects, addProject, removeProject, getProjectById };
