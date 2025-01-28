@@ -6,24 +6,25 @@ const projectSchema = new mongoose.Schema(
     description: [
       {
         titleDesc: { type: String, required: true },
-        desc: [{ type: String, required: true }]
-      }
+        desc: [{ type: String, required: true }],
+      },
     ],
     technologies: [
       {
         name: { type: String, required: true },
-        desc: [{ type: String, required: true }]
-      }
+        desc: [{ type: String, required: true }],
+      },
     ],
     url: { type: String, required: true },
     imageUrl: { type: String, required: true },
-    img: [
+    imgs:[
       {
         name: { type: String, required: true },
-        url: [{ type: String, required: true }]
-      }
+        url: [{ type: String, required: true }],
+      },
     ],
     language: { type: String, required: true, enum: ["es", "en"] },
+    relatedProject: { type: String }
   },
   {
     timestamps: true,
